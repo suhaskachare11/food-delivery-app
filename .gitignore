@@ -1,0 +1,34 @@
+#intellij
+.idea/
+
+# VS code 
+.vscode/
+
+# java
+*.class
+
+# Maven
+target/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Docker
+docker/postgres/data/
+
+# Mac
+.AppleDouble
+
+# Linux
+*~
+
+# Spring Boot
+spring.log
