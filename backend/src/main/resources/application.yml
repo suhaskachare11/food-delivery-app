@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: food-delivery
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quickbite
+    username: quickbite_user
+    password: quickbite_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
