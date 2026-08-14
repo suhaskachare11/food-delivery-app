@@ -1,59 +1,50 @@
 package com.quickbite.fooddelivery.user.entity;
 
+import com.quickbite.fooddelivery.common.persistence.AuditableEntity;
+import com.quickbite.fooddelivery.user.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+
 import java.util.UUID;
 
-import com.quickbite.fooddelivery.user.enums.UserStatus;
-
 @Entity
-@Table(
-    name = "users", 
-    uniqueConstraints = {
+@Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(name = "uk_user_email", columnNames = "email"),
         @UniqueConstraint(name = "uk_user_phone_number", columnNames = "phone_number")
-    }
-)
+})
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-   @Id
-   @GeneratedValue
-   private UUID id;
+@Builder
+public class User extends AuditableEntity {
 
-   @Column(nullable = false,length = 50)
-   private String firstName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-   @Column(nullable = false,length = 50)
-   private String lastName;
+    @Column(name = "first_name", nullable = false, length = 50)
+    private String firstName;
 
-   @Column(nullable = false, length = 255)
-   private String email;
+    @Column(name = "last_name", nullable = false, length = 50)
+    private String lastName;
 
-   @Column(name = "phone_number", nullable = false, length = 20)
-   private String phoneNumber;
+    @Column(nullable = false, length = 255)
+    private String email;
 
-   @Column(nullable = false)
-   private String password;
+    @Column(name = "phone_number", nullable = false, length = 20)
+    private String phoneNumber;
 
-   @Enumerated(EnumType.STRING)
-   @Column(nullable = false)
-   private UserStatus status;
+    @Column(name = "password_hash", nullable = false, length = 255)
+    private String passwordHash;
 
-   @Column(nullable = false)
-   private boolean emailVerified;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private UserStatus status;
 
-   @Column(nullable = false)
+    @Column(name = "email_verified", nullable = false)
+    private boolean emailVerified;
+
+    @Column(name = "phone_verified", nullable = false)
     private boolean phoneVerified;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
-
 }
