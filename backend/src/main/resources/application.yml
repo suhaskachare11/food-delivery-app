@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/quickbite
     username: quickbite_user
-    password: quickbite_pass123
+    password: quickbite_pass
 
   jpa:
     hibernate:
